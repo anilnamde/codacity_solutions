@@ -1,0 +1,116 @@
+<html>
+<body>
+<div id="task"><h2 class="mod-hidden">Task description</h2>
+    <div id="task_description" class="">
+        <div id="standard_task_description" class="protected">
+            <div class="task-description-content">
+
+                <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+
+                <div id="brinza-task-description">
+                    <p>You would like to make a list of N top brand names based on user preferences. You are supplied
+                        with data about users containing <tt style="white-space:pre-wrap">id</tt> and <tt
+                                style="white-space:pre-wrap">gender</tt> information. The method of compiling the list
+                        of N top brand names is as follows:</p>
+                    <blockquote><p>1. If the user specifies enough liked brands to cover the required N brands, then
+                        only this information should be used. Liked brands can be accessed by calling the function <tt
+                                style="white-space:pre-wrap">getLikedBrands(id)</tt>. If the user specifies more than N
+                        liked brands, then the first N brand names returned by <tt style="white-space:pre-wrap">getLikedBrands(id)</tt>
+                        should be used.</p></blockquote>
+                    <blockquote><p>2. If the user doesn't mention enough liked brands, then the rest of the result list
+                        should be filled up with top brands for the user's gender. Such a list can be obtained by
+                        calling the function <tt style="white-space:pre-wrap">getTopBrandsForGender(gender)</tt>. If <tt
+                                style="white-space:pre-wrap">getTopBrandsForGender(gender)</tt> returns more brand names
+                        than are needed to complete the list, as many of the leading brand names as are needed should be
+                        used.</p></blockquote>
+                    <blockquote><p>3. The order of the brand names in the result list should be the same as the order in
+                        the lists given by the functions, with brand names returned by <tt style="white-space:pre-wrap">getLikedBrands(id)</tt>
+                        listed first. Brand names returned by both functions together, <tt style="white-space:pre-wrap">getLikedBrands(id)</tt>
+                        and <tt style="white-space:pre-wrap">getTopBrandsForGender(gender)</tt>, should appear only
+                        once.</p></blockquote>
+                    <p>Write a function:</p>
+                    <tt style="white-space:pre-wrap"> function solution(U, N);</tt>
+                    <p>that, given user U and the number of brand names N, returns a <tt style="white-space:pre-wrap">Promise</tt>
+                        that should either be:</p>
+                    <blockquote>
+                        <ul style="margin: 10px;padding: 0px;">
+                            <li>resolved with an array of exactly N top brand names of the given user, in the following
+                                format: <tt style="white-space:pre-wrap">["Some Brand Name", "Other Brand Name",
+                                    ...]</tt>;
+                            </li>
+                        </ul>
+                    </blockquote>
+                    <blockquote>
+                        <ul style="margin: 10px;padding: 0px;">
+                            <li>or rejected with an <tt style="white-space:pre-wrap">CustomError</tt> with a message <tt
+                                    style="white-space:pre-wrap">"Not enough data"</tt> (if there are fewer than N brand
+                                names to be listed, or both <tt style="white-space:pre-wrap">Promises</tt> <tt
+                                        style="white-space:pre-wrap">getLikedBrands(id)</tt> and <tt
+                                        style="white-space:pre-wrap">getTopBrandsForGender(gender)</tt> are rejected).
+                            </li>
+                        </ul>
+                    </blockquote>
+                    <p>The user parameter is an object of the following structure: <tt style="white-space:pre-wrap">{
+                        id: 123132, gender: "FEMALE" }</tt>, where <tt style="white-space:pre-wrap">id</tt> is an
+                        integer and <tt style="white-space:pre-wrap">gender</tt> is a string containing either <tt
+                                style="white-space:pre-wrap">"FEMALE"</tt> or <tt
+                                style="white-space:pre-wrap">"MALE"</tt>.</p>
+                    <p>The functions <tt style="white-space:pre-wrap">getLikedBrands(id)</tt> and <tt
+                            style="white-space:pre-wrap">getTopBrandsForGender(gender)</tt>, used in the algorithm
+                        above, return <tt style="white-space:pre-wrap">Promise</tt>−s, that will be rejected with an <tt
+                                style="white-space:pre-wrap">CustomError</tt> or resolved with data in the following
+                        format:</p>
+                    <tt style="white-space:pre-wrap">[
+                        { id: 123, name: "Some Brand Name" },
+                        { id: 456, name: "Other Brand Name" },
+                        ...
+                        ]</tt>
+                    <p>For example, given user U, assume that <tt style="white-space:pre-wrap">getLikedBrands(U.id)</tt>
+                        returns <tt style="white-space:pre-wrap">[{1, "Logestyx"}, {10, "Gladlear"}]</tt> and <tt
+                                style="white-space:pre-wrap">getTopBrandsForGender(U.gender)</tt> returns <tt
+                                style="white-space:pre-wrap">[{6, "Burylaze Slapgalt"}, {1, "Logestyx"}, {7,
+                            "Izarpure"}]</tt>.</p>
+                    <blockquote>
+                        <ul style="margin: 10px;padding: 0px;">
+                            <li>For N=1 your function should return a <tt style="white-space:pre-wrap">Promise</tt>
+                                which resolves with an array [<tt style="white-space:pre-wrap">"Logestyx"</tt>].
+                            </li>
+                        </ul>
+                    </blockquote>
+                    <blockquote>
+                        <ul style="margin: 10px;padding: 0px;">
+                            <li>For N=3 <tt style="white-space:pre-wrap">Promise</tt> should be resolved with an array [<tt
+                                    style="white-space:pre-wrap">"Logestyx"</tt>, <tt style="white-space:pre-wrap">"Gladlear"</tt>,
+                                <tt style="white-space:pre-wrap">"Burylaze Slapgalt"</tt>].
+                            </li>
+                        </ul>
+                    </blockquote>
+                    <blockquote>
+                        <ul style="margin: 10px;padding: 0px;">
+                            <li>For N=5 <tt style="white-space:pre-wrap">Promise</tt> should be rejected with an <tt
+                                    style="white-space:pre-wrap">CustomError</tt>.
+                            </li>
+                        </ul>
+                    </blockquote>
+                    <p>The solution should be optimized for client-side (browser-based) performance, rather than
+                        back-end load. The expectation is that the developer will call both functions in parallel. Note
+                        that the example test-cases don't check for this, but the evaluation tests will check it.</p>
+                </div>
+                <div style="margin-top:5px">
+                    <small>Copyright 2009–2018 by Codility Limited. All Rights Reserved. Unauthorized copying,
+                        publication or disclosure prohibited.
+                    </small>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="under-task">
+        <div id="test_cases_area" class=""></div>
+        <div id="accessible_test_cases_area"></div>
+    </div>
+</div>
+</body>
+
+</html>

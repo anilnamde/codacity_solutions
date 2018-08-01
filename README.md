@@ -1,1 +1,1 @@
-# codacity_solutions
+https://app.codility.com/c/run/trainingWNZHYS-SAH
